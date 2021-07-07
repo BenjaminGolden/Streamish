@@ -126,7 +126,7 @@ namespace Streamish.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT up.Id, up.Name, up.Email, up.ImageUrl, up.DateCreated, 
-                        v.Id as VideoId, v.Title, v.Description, v.DateCreated as VideoDateCreated, V.Url
+                        v.Id as VideoId, v.Title, v.Description, v.DateCreated as VideoDateCreated, V.Url, v.UserProfileId as VideoUserProfileId
                       
                         FROM UserProfile up
                         Left Join Video v ON up.Id = v.UserProfileId
@@ -151,6 +151,7 @@ namespace Streamish.Repositories
                                 ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
                                 Videos = new List<Video>()
                             };
+                        }
                             if (DbUtils.IsNotDbNull(reader, "VideoId"))
                             {
                                 user.Videos.Add(new Video()
@@ -161,9 +162,10 @@ namespace Streamish.Repositories
                                     DateCreated = DbUtils.GetDateTime(reader,
                                     "VideoDateCreated"),
                                     Url = DbUtils.GetString(reader, "Url"),
+                                    UserProfileId = DbUtils.GetInt(reader, "VideoUserProfileId"),
                                 });
                             }
-                        }
+                        
                     }
 
                     reader.Close();
