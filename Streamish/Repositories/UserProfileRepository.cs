@@ -165,6 +165,7 @@ namespace Streamish.Repositories
                                     UserProfileId = DbUtils.GetInt(reader, "VideoUserProfileId"),
                                 });
                             }
+
                         
                     }
 
