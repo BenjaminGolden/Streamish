@@ -17,7 +17,7 @@ const Video = ({ video }) => {
           <strong>{video.title}</strong>
         </p>
         <p>{video.description}</p>
-        {video.comments.map(c => {return <p>{c.message}</p>})}
+        {video.comments?.map(c => {return <p>{c.message}</p>})}
       </CardBody>
     </Card>
   );
