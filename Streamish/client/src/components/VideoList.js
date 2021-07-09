@@ -1,48 +1,39 @@
 import React, { useEffect, useState } from "react";
+import VideoForm from './VideoForm';
 import Video from './Video';
 import { getAllVideosWithComments, searchVideos } from "../modules/videoManager";
+
+
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [search, setSearch] = useState("")
 
   const getVideos = () => {
-    getAllVideosWithComments().then(videos => setVideos(videos))
+      if (search == "")
+      {
+        getAllVideosWithComments()
+        .then(videos => setVideos(videos))
+      }
+      else
+      {
+          searchVideos(search).then(videos => setVideos(videos));
+      }
     
   };
 
   const handleSearch =(evt) => {
-    // evt.preventDefault()
+    evt.preventDefault()
     let searchInput = evt.target.value
-    
-    if (searchInput.length > 0) {
-        let searchMatch = videos.filter(videos => {
-            if (videos.title.toLowerCase().includes(searchInput.toLowerCase())) 
-            {
-                return true
-            }
-        })
-        setVideos(searchMatch)
-    } 
-    else 
-    {
-        getVideos()
-    }
-}
+    setSearch(searchInput)
+  }
 
-//   const handleSearch =(evt) => {
-//     evt.preventDefault()
-//     let searchInput = evt.target.value
-//         setSearch(searchInput)
-//     }
 
   useEffect(() => {
     getVideos();
-  }, []);
-
-  useEffect(() => {
-      searchVideos();
   }, [search]);
+
+  
 
   return (
     <div className="container">
