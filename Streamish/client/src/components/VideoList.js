@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import VideoForm from './VideoForm';
 import Video from './Video';
 import { getAllVideosWithComments, searchVideos } from "../modules/videoManager";
 
@@ -10,7 +9,7 @@ const VideoList = () => {
   const [search, setSearch] = useState("")
 
   const getVideos = () => {
-      if (search == "")
+      if (search === "")
       {
         getAllVideosWithComments()
         .then(videos => setVideos(videos))
