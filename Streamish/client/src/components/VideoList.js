@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
 import { getAllVideosWithComments, searchVideos } from "../modules/videoManager";
-import { VideoForm } from "./VideoForm";
+import  VideoForm  from "./VideoForm";
 
 
 //The Video list is what is passed in to the App.js, which is loaded on the dom to display JSX. 
@@ -28,7 +28,7 @@ const VideoList = () => {
     
   };
 
-  //the handleSearch function saves the input value that the user types in the search bar in the variable searchInput. the state of search (setSearch) is then set with the search input. 
+  //the handleSearch function saves the search result that the user types in the search bar in the variable searchInput. the state of search (setSearch) is then set with the search result. 
   const handleSearch =(evt) => {
     evt.preventDefault()
     let searchInput = evt.target.value
@@ -44,7 +44,7 @@ const VideoList = () => {
 
   return (
       <>
-      <VideoForm getVideos={getVideos}/>
+      {/* <VideoForm getVideos={getVideos}/> */}
     <div className="container">
       <div className="row justify-content-center">
         <div >  
