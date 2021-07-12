@@ -1,4 +1,5 @@
 const baseUrl = '/api/video';
+const userUrl = '/api/UserProfile';
 
 //fetch calls in the manager communicate with the database to return requested information. 
 
@@ -28,5 +29,11 @@ export const addVideo = (video) => {
 };
 
 export const getVideo = (id) => {
-    return fetch(`${baseUrl}/${id}`).then((res) => res.json());
+    return fetch(`${baseUrl}/${id}`)
+    .then((res) => res.json());
+};
+
+export const getVideosByUser = (id) => {
+    return fetch(`${userUrl}/GetByIdWithVideos/${id}`)
+    .then((res) => res.json());
 };
