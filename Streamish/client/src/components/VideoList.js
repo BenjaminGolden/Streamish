@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Video from './Video';
 import { getAllVideosWithComments, searchVideos } from "../modules/videoManager";
+import { VideoForm } from "./VideoForm";
 
 
 
 const VideoList = () => {
   const [videos, setVideos] = useState([]);
   const [search, setSearch] = useState("")
+
+
 
   const getVideos = () => {
       if (search === "")
@@ -35,6 +38,8 @@ const VideoList = () => {
   
 
   return (
+      <>
+      <VideoForm getVideos={getVideos}/>
     <div className="container">
       <div className="row justify-content-center">
         <div >  
@@ -45,6 +50,7 @@ const VideoList = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
