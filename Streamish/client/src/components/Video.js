@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
+import { Link } from "react-router-dom";
 
 //the Video function is responsible for creating the individual cards associated with each saved video. The Video function is then imported in the VideoList and called in the JSX. We then map over all of the videos, creating a card for each video in the DB. 
 
@@ -15,9 +16,9 @@ const Video = ({ video }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen />
 
-        <p>
-          <strong>{video.title}</strong>
-        </p>
+        <Link to={`/videos/${video.id}`}>
+            <strong>{video.title}</strong>
+        </Link>
         <p>{video.description}</p>
         {video.comments?.map(c => {return <p>{c.message}</p>})}
       </CardBody>
