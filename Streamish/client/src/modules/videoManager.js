@@ -1,5 +1,7 @@
 const baseUrl = '/api/video';
 
+//fetch calls in the manager communicate with the database to return requested information. 
+
 export const getAllVideos = () => {
   return fetch(baseUrl)
     .then((res) => res.json())
