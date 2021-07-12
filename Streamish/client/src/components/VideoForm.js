@@ -20,6 +20,7 @@ export const VideoForm = ({getVideos}) => {
     
      const history = useHistory();
     
+     //input change function is responsible for listening to any event or change in the input fields and capturing that data to be stored as the value of the corresponding object. 
     const handleControlledInputChange = (evt) => {
 
         const newVideo = { ...video }
@@ -33,16 +34,19 @@ export const VideoForm = ({getVideos}) => {
         setVideo(newVideo)
     }
     
+    //the handle save function calls the addVideo fetch call, which communicates with the video controller and video repository on the server side. the method in the repository communicates with the database to save the selected object properties. 
     const handleClickSaveVideo = (evt) => {
         evt.preventDefault() //Prevents the browser from submitting the form
         setIsLoading(true)
             addVideo(video)
+            //after the new video is saved to the DB, we reset the state of setVideo to empty strings, effectively clearing the input fields on the DOM. 
             .then(() => setVideo({
                 title: "",
                 description: "",
                 url: ""
             }))
             // we would then call props.getVideos()
+            // after the video is saved and the fields have been cleared, we call the getVideos function, which has been passed in as a prop, to automatically refresh the page and update state, which adds the new video to the list without the need for the user to refresh the page. 
             .then(() => getVideos())
             // .then(() => history.push('/'))
             

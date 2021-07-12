@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, CardBody } from "reactstrap";
 
+//the Video function is responsible for creating the individual cards associated with each saved video. The Video function is then imported in the VideoList and called in the JSX. We then map over all of the videos, creating a card for each video in the DB. 
+
 const Video = ({ video }) => {
   return (
     <Card >
