@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Streamish.Repositories;
 using Streamish.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Streamish.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class VideoController : ControllerBase
@@ -77,11 +79,13 @@ namespace Streamish.Controllers
                 //  https://www.youtube.com/embed/sstOXCQ-EG0
 
                 // If this isn't a YouTube video, we should just give up
-                if (!video.Url.Contains("youtube"))
+                if (!video.Url.Contains("youtube") || !video.Url.Contains("vimeo"))
+
                 {
                     return BadRequest();
                 }
 
+                
                 // If it's not already an embeddable URL, we have some work to do
                 if (!video.Url.Contains("embed"))
                 {
